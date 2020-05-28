@@ -1,6 +1,5 @@
 const song = document.querySelector('[data-song]');
 const play = document.querySelector('[data-play]');
-const video = document.querySelector('[data-video] video');
 const outline = document.querySelector('[data-moving-outline] circle');
 const sound = document.querySelectorAll('[data-sound-picker] button');
 const timeDisplay = document.querySelector('.time_display');
@@ -15,7 +14,6 @@ outline.style.strokeDashoffset = outlineLength;
 sound.forEach((sound) => {
   sound.addEventListener(eventClick , function () {
     song.src = this.getAttribute('data-sound');
-    video.src = this.getAttribute('data-video');
     checkIfPLaying(song);
   });
 });
@@ -34,11 +32,9 @@ timeSelect.forEach((option) => {
 const checkIfPLaying = (song) => {
   if (song.paused) {
     song.play();
-    video.play();
     play.src = '../assets/svg/pause.svg';
   } else {
     song.pause();
-    video.pause();
     play.src = '../assets/svg/play.svg';
   }
 }
@@ -58,6 +54,5 @@ song.ontimeupdate = () => {
     song.pause();
     song.currentTime = 0;
     play.src = '../assets/svg/pause.svg'
-    video.pause();
   }
 }
